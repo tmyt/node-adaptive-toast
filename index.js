@@ -7,9 +7,11 @@ var XML_CHAR_MAP = {
 };
 
 function escapeXml(s){
-  return s.replace(/[<>&"']/g, function (ch) {
+  s = s.replace(/[<>&"']/g, function (ch) {
     return XML_CHAR_MAP[ch];
   });
+  if(s[s.length-1] === ' '){s=s.slice(0,-1);s+='&#x00A0;';}
+  return s;
 }
 
 function xmlAttr(key, value){
